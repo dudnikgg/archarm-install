@@ -49,7 +49,7 @@ chown alarm:alarm /home/alarm/.xinitrc
 
 nvim /home/alarm/.xinitrc
 
-
+echo "maybe enter password for alarm"
 su - alarm "chsh -s /bin/zsh"
 
 reboot

@@ -34,4 +34,8 @@ echo "Address=192.168.2.119/24" >> "root/etc/systemd/network/20-wired.network"
 echo "Gateway=192.168.2.1" >> "root/etc/systemd/network/20-wired.network"
 echo "DNS=192.168.2.120" >> "root/etc/systemd/network/20-wired.network"
 
+wget https://raw.githubusercontent.com/JustusDinera/archarm-install/main/on_pi.sh >> root/home/alarm/setup_as_root.sh
+
 umount "${1}*"
+
+echo "Good luck this time!"
