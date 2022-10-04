@@ -7,8 +7,8 @@ locale-gen
 timedatectl set-timezone Europe/Berlin
 
 # pacman config
-pacman-key --init
-pacman-key --populate archlinuxarm
+pacman-key --init --noconfirm
+pacman-key --populate archlinuxarm --noconfirm
 echo "SigLevel = Required DatabaseOptional" >> /etc/pacman.conf
 echo "LocalFileSigLevel = Optional" >> /etc/pacman.conf
 echo "Server = https://eu.mirror.archlinuxarm.org" >> /etc/pacman.d/mirrorlist
@@ -30,9 +30,9 @@ else
      "disable_overscan=1" >> /boot/config.txt
 fi
 
-pacman -Syu
-pacman -S accountsservice zsh neovim firefox chromium htop sudo 
-
+pacman -Syu --noconfirm
+pacman -S --noconfirm accountsservice zsh neovim firefox chromium htop sudo git base-devel
+pacman -S --needed  --noconfirm
 usermod -aG video,tty,audio,sudo alarm
 
 echo "%sudo   ALL=(ALL:ALL) ALL" >> /etc/sudoers.d/10-group-sudo
@@ -51,6 +51,11 @@ nvim /home/alarm/.xinitrc
 
 echo "maybe enter password for alarm"
 su - alarm "chsh -s /bin/zsh"
+
+cd /tmp
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si
 
 reboot
 
