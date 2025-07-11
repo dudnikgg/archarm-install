@@ -54,11 +54,11 @@ then
     echo "[Match]" >> "root/etc/systemd/network/20-wired.network"
     echo "Name=eth0" >> "root/etc/systemd/network/20-wired.network"
     echo "[Network]" >> "root/etc/systemd/network/20-wired.network"
-    echo "Address=192.168.2.119/24" >> "root/etc/systemd/network/20-wired.network"
-    echo "Gateway=192.168.2.1" >> "root/etc/systemd/network/20-wired.network"
-    echo "DNS=192.168.2.120" >> "root/etc/systemd/network/20-wired.network"
+    echo "Address=192.168.50.113/24" >> "root/etc/systemd/network/20-wired.network"
+    echo "Gateway=192.168.50.1" >> "root/etc/systemd/network/20-wired.network"
+    echo "DNS=192.168.50.113" >> "root/etc/systemd/network/20-wired.network"
 
-    wget https://raw.githubusercontent.com/JustusDinera/archarm-install/main/on_pi.sh
+    wget https://raw.githubusercontent.com/dudnikgg/archarm-install/main/on_pi.sh
 
     umount "${1}*"
 

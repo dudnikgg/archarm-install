@@ -1,19 +1,19 @@
 #!/bin/bash
 
 # Language/location options
-echo "KEYMAP=de-latin1" >> /etc/console.conf
-echo "LANG=de_DE.UTF-8" >> /etc/locale.conf
+echo "KEYMAP=en" >> /etc/console.conf
+echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 locale-gen
-timedatectl set-timezone Europe/Berlin
+timedatectl set-timezone Europe/Kyiv
 
 # pacman config
 pacman-key --init --noconfirm
 pacman-key --populate archlinuxarm --noconfirm
 echo "SigLevel = Required DatabaseOptional" >> /etc/pacman.conf
 echo "LocalFileSigLevel = Optional" >> /etc/pacman.conf
-echo "Server = https://eu.mirror.archlinuxarm.org" >> /etc/pacman.d/mirrorlist
-echo "Server = https://de5.mirror.archlinuxarm.org" >> /etc/pacman.d/mirrorlist
-echo "Server = https://de3.mirror.archlinuxarm.org" >> /etc/pacman.d/mirrorlist
+echo "Server = https://repo.hyron.dev/archlinux/\$repo/os/\$arch" >> /etc/pacman.d/mirrorlist
+echo "Server = https://mirror.hostiko.network/archlinux/\$repo/os/\$arch" >> /etc/pacman.d/mirrorlist
+echo "Server = http://mirrors.reitarovskyi.tech/archlinux/\$repo/os/\$arch" >> /etc/pacman.d/mirrorlist
 
 # Boot config
 if grep -Fxq "/boot/config.txt" "dtoverlay=vc4-kms-v3d"
@@ -31,7 +31,7 @@ else
 fi
 
 pacman -Syu --noconfirm
-pacman -S --noconfirm accountsservice zsh neovim firefox chromium htop sudo git base-devel
+pacman -S --noconfirm accountsservice zsh neovim curl fzf btop sudo git base-devel
 pacman -S --needed  --noconfirm
 usermod -aG video,tty,audio,sudo alarm
 
